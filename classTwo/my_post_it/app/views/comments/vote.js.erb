@@ -1,0 +1,7 @@
+<% if @vote.valid? %>
+  $('#comment_<%=@comment.id%>_votes').html('<%= @comment.total_votes %>');
+<% else %>
+  alert('You can only vote once per comment.');
+  //flash message alternative
+  //$('<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a><div id="flash_notice">You can only vote once per comment.</div></div>').insertBefore('div.span12');
+<% end %>

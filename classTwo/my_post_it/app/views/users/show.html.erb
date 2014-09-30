@@ -1,0 +1,43 @@
+<% content_for :head do %>
+  <title>Profile &raquo <%= @user.username %></title>
+<% end %>
+
+<%= render 'shared/content_title', title: "#{@user.username}'s profile" %>
+
+<div class='well'>
+  <dl class='dl-horizontal'>
+    <dt>Email:</dt>
+    <dd><em><%= @user.email %></em></dd>
+    <dt>Username:</dt>
+    <dd><em><%= @user.username %></em></dd>
+    <dt>Time Zone:</dt>
+    <dd><em><%= @user.time_zone %></em></dd>
+    <br/>
+    <dt>Post Points:</dt>
+    <dd><%= @user.posts.map(&:total_votes).inject(0, &:+) %></dd>
+    <dt>Comment Points:</dt>
+    <dd><%= @user.comments.map(&:total_votes).inject(0, &:+) %></dd>
+  </dl>
+  <hr/>
+</div>
+
+<h5><%= @user.username %>'s Activity</h5>
+
+<ul class='nav nav-tabs'>
+  <li class="<%= 'active' if params[:tab].nil? %>">
+    <%= link_to "Posts (#{@user.posts.size})", user_path(@user) %>
+  </li>
+  <li class="<%= 'active' if params[:tab] == 'comments' %>">
+    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: 'comments') %>
+  </li>
+</ul>
+
+<% if params[:tab].nil? %>
+  <% @user.posts.each do |post| %>
+    <%= render 'posts/post', post: post %>
+  <% end %>
+<% elsif params[:tab] == 'comments' %>
+  <% @user.comments.reverse.each do |comment| %>
+    <%= render 'comments/comment', comment: comment, show_post: true %>
+  <% end %>
+<% end %>

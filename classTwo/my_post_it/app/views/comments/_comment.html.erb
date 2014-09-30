@@ -1,0 +1,43 @@
+<% show_post ||= false %>
+<% show_user ||= false %>
+
+<div class="row">
+  <div class="span well text-center">
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post', remote: true do %>
+        <i class='icon-chevron-up'></i>
+      <% end %>
+      <br/>
+      <span id="comment_<%= comment.id %>_votes" class="vote-num"><%= comment.total_votes %></span>
+      <br/>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post', remote: true do %>
+        <i class='icon-chevron-down'></i>
+      <% end %>
+    <% else %>
+      <%= link_to register_path do %>
+        <i class='icon-chevron-up'></i>
+      <% end %>
+      <br/>
+      <span id="comment_<%= comment.id %>_votes" class="vote-num"><%= comment.total_votes %></span>
+      <br/>
+      <%= link_to register_path do %>
+        <i class='icon-chevron-down'></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="body comment-body">
+    <em><%= comment.body %></em>
+    <p>
+      <% if show_user %>
+        <span class="quiet">comment by 
+        <%= link_to comment.creator.username, user_path(comment.creator) %></span>
+      <% end %>
+      <% if show_post %>
+        <span class="quiet">in 
+        <%= link_to comment.post.title, post_path(comment.post) %></span>
+      <% end %>
+      <span class="quiet">
+      <small>on <%= pretty_datetime(comment.created_at) %></small></span>
+    </p>
+  </div>
+</div>

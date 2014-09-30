@@ -1,0 +1,36 @@
+<% content_for :head do %>
+  <title><%= @post.title %></title>
+<% end %>
+
+<p>
+  <div class="body">
+    <%= render @post.categories %>
+  </div>
+  <% if logged_in? && current_user == @post.creator || logged_in? && current_user.admin? %>
+    <span class="pull-right">
+      [<%= link_to 'edit post', edit_post_path(@post) %>]
+    </span>
+  <% end %>
+</p>
+
+<%= render "shared/content_title", title: link_to(@post.title, fix_url(@post.url)) %>
+
+<div class="body">
+  <p><%= @post.description %></p>
+</div>
+<hr/>
+
+<% if logged_in? %>
+  <%= form_for [@post, @comment] do |f| %>
+    <%= render 'shared/errors', object: @comment %>
+    <div class='control-group' %>
+      <%= f.label :body, 'Leave a comment:' %>
+      <%= f.text_area :body, rows: 3, class: 'span4' %>
+    </div>
+    <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+
+<% @post.reload.comments.each do |comment| %>
+  <%= render 'comments/comment', comment: comment, show_user: true %>
+<% end %>

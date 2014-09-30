@@ -1,0 +1,185 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+ @import "bootstrap";
+
+/* Color hex codes */
+
+/* Greens light to dark */
+$green-0: #88CC88;
+$green-1: #55AA55;
+$green-2: #2D882D;
+$green-3: #116611;
+$green-4: #004400;
+
+/* Blues light to dark */
+$blue-0: #7887AB;
+$blue-1: #4F628E;
+$blue-2: #2E4272;
+$blue-3: #162955;
+$blue-4: #061539;
+
+/* Tans light to dark */
+$tan-0: #FFFFAA;
+$tan-1: #D4D46A;
+$tan-2: #AAAA39;
+$tan-3: #808015;
+$tan-4: #555500;
+
+.container {
+  margin-left: 135px;
+  margin-right: 135px;
+}
+
+.navbar .nav > li > a.brand {
+  padding-left: 0px;
+  font-family: Impact;
+  font-size: xx-large;
+  color: $tan-2;
+  &:hover {
+    color: $tan-3;
+  }
+}
+
+.quiet {
+  color: #ababab;
+}
+
+div.nav_item {
+  margin-right: 16px;
+  float: right;
+  font-family: Helvetica;
+  font-weight: bolder;
+}
+
+div.btn-group {
+  font-family: Helvetica;
+  font-weight: bolder;
+  float: left;
+}
+
+.label, .badge {
+  a, a:hover, a:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+  &:hover {
+    color: $blue-0;
+  }
+}
+
+.badge {
+  border: 2px solid $green-2;
+  background: #FFF;
+  text-shadow: none;
+  -webkit-transition: all .15s;
+  transition: all .15s;
+  margin-right: 3px;
+
+  a, a:hover, a:active {
+    color: #000;
+  }
+
+  &:hover {
+    background: $green-0;
+  }
+}
+
+.pull-right {
+  margin-right: 135px;
+}
+
+.span0, .span8, .well {
+  background: none;
+  border: transparent;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
+}
+
+.span0 {
+  margin-top: 30px;
+}
+
+.body {
+  margin-right: 135px;
+}
+
+.comment-body {
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
+hr {
+  border: 0;
+  padding: 0;
+  border-bottom: 1px solid $tan-1;
+  margin-right: 120px;
+}
+
+div.comment_votes {
+  padding: 10px;
+}
+
+.icon-chevron-down {
+  margin-bottom: 20px;
+}
+
+.vote-up, .vote-down {
+  /*
+   * In Internet Explorer, The"border-style: dashed" will never be
+   * rendered unless "(width * 5) >= border-width" is true.
+   * Since "width" is set to "0", the "dashed-border" remains
+   * invisible to the user, which renders the border just like how
+   * "border-color: transparent" renders.
+   */
+  padding: 0;
+  border-style: dashed;
+  border-color: transparent;
+  border-width: 0.53em;
+  display: -moz-inline-box;
+  display: inline-block;
+  font-size: 15px;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: middle;
+  width: 0;
+}
+
+.vote-up {
+  border-bottom-width: 1em;
+  border-bottom-style: solid;
+  border-bottom-color: $tan-1;
+  bottom: 0.25em;
+  
+  &:hover {
+    border-bottom-color: $green-0;
+  }
+}
+                    
+.vote-down {
+  border-top-width: 1em;
+  border-top-style: solid;
+  border-top-color: $tan-1;
+  top: 0.25em;
+
+  &:hover {
+    border-top-color: $blue-0;
+  }
+}
+
+.alert-success, .alert-error {
+  margin-right: 120px;
+}
